@@ -44,6 +44,7 @@ class SocketIO {
 
   ///Socket/Connection identifier
   int id;
+  String _identifyingURI;
 
   ///Store listeners
   Map<String, List<Function>> _listeners = {};
@@ -52,7 +53,7 @@ class SocketIO {
   final MethodChannel _channel;
 
   ///Create a socket object with identifier received from platform API's
-  SocketIO(this.id)
+  SocketIO(this.id, this._identifyingURI)
       : _channel =
             new MethodChannel("adhara_socket_io:socket:${id.toString()}") {
     _channel.setMethodCallHandler((call) {
@@ -63,6 +64,9 @@ class SocketIO {
       }
     });
   }
+
+  ///returns {uri:<uri>, query: <query>}
+  String get identifyingURI => _identifyingURI;
 
   ///connect this socket to server
   connect() async {

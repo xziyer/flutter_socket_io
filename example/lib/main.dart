@@ -4,14 +4,14 @@ import 'package:adhara_socket_io/adhara_socket_io.dart';
 
 void main() => runApp(MyApp());
 
-const String URI = "http://192.168.1.5:7000/";
+const String URI = "http://192.168.43.195:7000/";
 
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   List<String> toPrint = ["trying to conenct"];
   SocketIOManager manager;
   SocketIO socket;
@@ -22,6 +22,20 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     manager = SocketIOManager();
     initSocket();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose(){
+    manager.dispose();
+    super.dispose();
+  }
+
+  @override
+  void reassemble (){
+    print("here..");
+    manager.dispose();
+    super.reassemble();
   }
 
   initSocket() async {
@@ -32,7 +46,8 @@ class _MyAppState extends State<MyApp> {
         //Query params - can be used for authentication
         query: {
           "auth": "--SOME AUTH STRING---",
-          "info": "new connection from adhara-socketio"
+          "info": "new connection from adhara-socketio",
+          "timestamp": DateTime.now().toString()
         },
         //Enable or disable platform channel logging
         enableLogging: false
@@ -53,8 +68,8 @@ class _MyAppState extends State<MyApp> {
     socket.connect();
   }
 
-  disconnect(){
-    manager.clearInstance(socket);
+  disconnect() async {
+    await manager.clearInstance(socket);
     setState(() => isProbablyConnected = false);
   }
 

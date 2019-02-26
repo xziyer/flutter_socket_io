@@ -45,6 +45,13 @@ public class AdharaSocketIoPlugin implements MethodCallHandler {
             }
         }
         switch (call.method) {
+            case "fetchInstances": {
+                ArrayList<String> instanceIdentifiers = new ArrayList<>();
+                for(AdharaSocket socket : this.instances){
+                    instanceIdentifiers.add(socket.getInstanceIdentifier());
+                }
+                result.success(instanceIdentifiers);
+            }
             case "newInstance": {
                 try{
                     int newIndex = instances.size();

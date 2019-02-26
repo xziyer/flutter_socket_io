@@ -155,4 +155,8 @@ class AdharaSocket implements MethodCallHandler {
 
     }
 
+    public String getInstanceIdentifier(){
+        return options.uri+"?"+options.query;
+    }
+
 }
