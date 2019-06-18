@@ -68,7 +68,7 @@ public class AdharaSocketIoPlugin implements MethodCallHandler {
                         this.enableLogging = call.argument("enableLogging");
                     }
                     int newIndex = instances.size();
-                    AdharaSocket.Options options = new AdharaSocket.Options(newIndex, (String)call.argument("uri"));
+                    AdharaSocket.Options options = new AdharaSocket.Options(newIndex, (String)call.argument("uri"), (String)call.argument("namespace"));
                     try {
                         List<String> transports = call.argument("transports");
                         if (transports != null) {
