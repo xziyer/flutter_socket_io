@@ -56,6 +56,7 @@ class SocketOptions {
     return {
       "uri": uri,
       "query": query,
+      "namespace": namespace,
       "enableLogging": enableLogging,
       "transports": transports.map((Transports t){
         return {
