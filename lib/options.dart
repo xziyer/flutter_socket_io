@@ -6,6 +6,7 @@ enum Transports{
 class SocketOptions {
 
   final String uri;
+  final String namespace;
   final Map<String, String> query;
 
   ///Enable debug logging
@@ -45,6 +46,7 @@ class SocketOptions {
 //        public int policyPort = -1;
 
   SocketOptions(this.uri, {
+    this.namespace: '/',
     this.query: const {},
     this.enableLogging: false,
     this.transports: const [Transports.WEB_SOCKET, Transports.POLLING]

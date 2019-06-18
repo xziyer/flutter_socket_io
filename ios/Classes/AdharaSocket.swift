@@ -28,7 +28,7 @@ public class AdharaSocket: NSObject, FlutterPlugin {
 
     public init(_ channel:FlutterMethodChannel, _ config:AdharaSocketIOClientConfig) {
         manager = SocketManager(socketURL: URL(string: config.uri)!, config: [.log(true), .connectParams(config.query)])
-        socket = manager.defaultSocket
+        socket = manager.socket(forNamespace: config.namespace)
         self.channel = channel
         self.config = config
     }
@@ -96,12 +96,14 @@ public class AdharaSocketIOClientConfig: NSObject{
     
     let adharaId:Int
     let uri:String
+    let namespace:String
     public var query:[String:String]
     public var enableLogging:Bool
     
     init(_ adharaId:Int, uri:String) {
         self.adharaId = adharaId
         self.uri = uri
+        self.namespace = namespace
         self.query = [String:String]()
         self.enableLogging = false
     }
