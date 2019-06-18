@@ -27,7 +27,7 @@ public class SwiftAdharaSocketIoPlugin: NSObject, FlutterPlugin {
             case "newInstance":
                 let newIndex: Int = instances.count
                 let config:AdharaSocketIOClientConfig
-                    = AdharaSocketIOClientConfig(newIndex, uri: arguments["uri"] as! String)
+                    = AdharaSocketIOClientConfig(newIndex, uri: arguments["uri"] as! String, namespace: arguments["namespace"] as! String)
                 if let query: [String:String] = arguments["query"] as? [String:String]{
                     config.query = query
                 }
