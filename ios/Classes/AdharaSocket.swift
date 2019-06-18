@@ -100,7 +100,7 @@ public class AdharaSocketIOClientConfig: NSObject{
     public var query:[String:String]
     public var enableLogging:Bool
     
-    init(_ adharaId:Int, uri:String) {
+    init(_ adharaId:Int, uri:String, namespace:String) {
         self.adharaId = adharaId
         self.uri = uri
         self.namespace = namespace
