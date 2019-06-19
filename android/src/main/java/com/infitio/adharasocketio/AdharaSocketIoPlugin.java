@@ -74,7 +74,7 @@ public class AdharaSocketIoPlugin implements MethodCallHandler {
                         if (transports != null) {
                             options.transports = AdharaSocketIoPlugin.getStringArray(transports);
                         }
-                        options.timeout = (Long) call.argument("timeout");
+                        options.timeout = (Integer) call.argument("timeout");
                     }catch (Exception e){
                         Log.e(TAG, e.toString());
                     }
