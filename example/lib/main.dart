@@ -4,7 +4,7 @@ import 'package:adhara_socket_io/adhara_socket_io.dart';
 
 void main() => runApp(MyApp());
 
-const String URI = "http://192.168.1.5:7000/";
+const String URI = "http://192.168.0.136:8050";
 
 class MyApp extends StatefulWidget {
   @override
@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
     socket = await manager.createInstance(SocketOptions(
         //Socket IO server URI
         URI,
+        namespace: '/im',
         //Query params - can be used for authentication
         query: {
           "auth": "--SOME AUTH STRING---",
